@@ -75,10 +75,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             cell.contentView.backgroundColor = UIColor.blue
             
             self.isPerformingUpdate = true
+            
+            //simulating a fetch with a delay
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 
+                //modifies the underlying model + numberOfItemsInSection
                 self.min -= 3
                 
+                //inside a block without animations, we insert new items at index 0 and scroll to the cell that was previously at the top
                 UIView.performWithoutAnimation {
                     let items = [IndexPath(row: 0, section: 0), IndexPath(row: 1, section: 0), IndexPath(row: 2, section: 0)]
                     collectionView.insertItems(at: items)
